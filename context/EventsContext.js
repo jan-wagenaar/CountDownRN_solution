@@ -2,7 +2,7 @@
 // @refresh reset
 import React, { useEffect, createContext, useState } from 'react';
 import { parseISO } from 'date-fns';
-import { database } from '../database'
+import { database } from '../database/database'
 export const EventsContext = createContext({});
 
 export const EventsContextProvider = props => {
@@ -42,8 +42,9 @@ export const EventsContextProvider = props => {
         datetime: parseISO(event.datetime)
       }
     });
-
+    // console.log(mappedEvents)
     setEvents(mappedEvents);
+    console.log(events)
   };
 
   const refreshEvents = () =>  {

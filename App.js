@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { Ionicons } from '@expo/vector-icons';
 
 import useDatabase from './hooks/useDatabase';
 import {EventsContextProvider} from './context/EventsContext';
@@ -34,8 +33,8 @@ export const AppTabs = () => {
 };
 
 export default function App() {
-SplashScreen.preventAutoHideAsync(); //don't let the splash screen hide
-const isDBLoadingComplete = useDatabase();
+  SplashScreen.preventAutoHideAsync(); //don't let the splash screen hide
+  const isDBLoadingComplete = useDatabase();
 
   if (isDBLoadingComplete) {
     SplashScreen.hideAsync();
@@ -44,7 +43,7 @@ const isDBLoadingComplete = useDatabase();
       <EventsContextProvider>
         <ActionSheetProvider>
           <NavigationContainer>
-            <AppNavigator />
+            <AppTabs />
           </NavigationContainer>
         </ActionSheetProvider>
       </EventsContextProvider>

@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-import Events from './Events';
+import HomeScreen from './HomeScreen';
 import EventDetail from './EventDetail';
 import EventForm from './EventForm';
 import Link from '../Link/link';
@@ -18,7 +18,7 @@ const EventStack = () => {
         <Stack.Navigator>
             <Stack.Screen 
                 name="Events" 
-                component={Events} 
+                component={HomeScreen} 
                 options={{
                     headerRight: () => (
                         <Link

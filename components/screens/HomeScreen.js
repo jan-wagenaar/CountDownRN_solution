@@ -1,32 +1,15 @@
 import React, {useState, useContext} from 'react';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
 
-import { EventsContext } from '../../context/EventsContext';
+import EventsContext from '../../context/EventsContext';
+import EventList from '../List/eventList';
 
-export default function HomeScreen() {
-  const [ name, setName ] = useState(null);
-
-  const eventsContext = useContext(EventsContext)
-  const { events, addNewEvent } = eventsContext;
-
-  const insertEvent = () => {
-    addNewEvent(name);
-  }
+const HomeScreen = () => {
+  const { events } = useContext(EventsContext)
 
   return (
-    <View style={styles.container}>
-      <Text>Our list of events</Text>
-      {events.map((event) => (
-        <Text key={event.id}>{event.name}</Text>
-      ))}
-
-      <TextInput
-        style= { styles.input }
-        onChangeText={(name) => setName(name)}
-        value={name}
-        placeholder="enter new name..."
-      />
-      <Button title="insert event" onPress={insertEvent}/>
+    <View style={styles.container}>    
+      <EventList events={events} />
     </View>
   );
 }
@@ -48,3 +31,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default HomeScreen;
