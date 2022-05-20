@@ -1,8 +1,9 @@
-import {EventsContextProvider} from '../context/EventsContext';
+import { EventsContextProvider } from '../context/EventsContext';
 
 const useEvents = () => {
     const { 
         events,
+        getEvents,
         createOrUpdateEvent,
         getEventById,
         deleteEventById 
@@ -10,6 +11,7 @@ const useEvents = () => {
 
     return {
         events,
+        getEvents,
         createOrUpdateEvent,
         getEventById,
         deleteEventById

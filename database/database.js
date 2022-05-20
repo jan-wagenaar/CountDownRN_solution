@@ -2,21 +2,21 @@ import * as SQLite from "expo-sqlite"
 
 const db = SQLite.openDatabase('db.db')
 
-const getEvents = (setEventFunc) => {
-  db.transaction(
-    tx => {
-      tx.executeSql(
-        'SELECT * FROM EVENTS',
-        [],
-        (_, { rows: { _array } }) => {
-          setEventFunc(_array)
-        }
-      );
-    },
-    (t, error) => { console.log("db error load events"); console.log(error) },
-    (_t, _success) => { console.log("loaded events")}
-  );
-}
+const getEvents = (setEventsFunc) => {
+    db.transaction(
+      tx => {
+        tx.executeSql(
+          'SELECT * FROM EVENTS',
+          [],
+          (_, { rows: { _array } }) => {
+            setEventsFunc(_array)
+          }
+        );
+      },
+      (t, error) => { console.log("db error load events"); console.log(error) },
+      (_t, _success) => { console.log("loaded events")}
+    );
+};
 
 const getEventById = (setEventFunc) => {
   db.transaction(

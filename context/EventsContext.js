@@ -27,6 +27,10 @@ export const EventsContextProvider = props => {
     }
   };
 
+  const getEvents = (setEventsFunc) => {
+    return database.getEvents(setEventsFunc);
+  };
+
   const getEventById = (id, setEventFunc) => {
     return database.getEventById(id, setEventFunc);
   }
@@ -54,6 +58,7 @@ export const EventsContextProvider = props => {
   // Make the context object:
   const eventsContext = {
     events,
+    getEvents,
     createOrUpdateEvent,
     getEventById,
     deleteEventById
