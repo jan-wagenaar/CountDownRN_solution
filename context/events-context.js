@@ -8,16 +8,16 @@ export const EventsContext = createContext({});
 export const EventsContextProvider = props => {
   // Initial values are obtained from the props
   const {
-    events: initialEvents,
+    // events: initialEvents,
     children
   } = props;
 
-  // Use State to store the values
-  const [events, setEvents] = useState(initialEvents);
+  // // Use State to store the values
+  // const [events, setEvents] = useState(initialEvents);
 
-  useEffect(() => {
-    refreshEvents()
-  }, [] )
+  // useEffect(() => {
+  //   refreshEvents()
+  // }, [] )
 
   const createOrUpdateEvent = event => {
     if(event.id === 0) {
@@ -39,25 +39,24 @@ export const EventsContextProvider = props => {
     return database.deleteEventById(id, refreshEvents)
   }
 
-  const mapAndSetEvents = events => {
-    const mappedEvents = events.map(event => {
-      return {
-        ...event,
-        datetime: parseISO(event.datetime)
-      }
-    });
-    // console.log(mappedEvents)
-    setEvents(mappedEvents);
-    console.log(events)
-  };
+  // const mapAndSetEvents = events => {
+  //   const mappedEvents = events.map(event => {
+  //     return {
+  //       ...event,
+  //       datetime: parseISO(event.datetime)
+  //     }
+  //   });
+  //   // console.log(mappedEvents)
+  //   setEvents(mappedEvents);
+  //   console.log(events)
+  // };
 
-  const refreshEvents = () =>  {
-    return database.getEvents(mapAndSetEvents)
-  }
+  // const refreshEvents = () =>  {
+  //   return database.getEvents(mapAndSetEvents)
+  // }
 
   // Make the context object:
   const eventsContext = {
-    events,
     getEvents,
     createOrUpdateEvent,
     getEventById,

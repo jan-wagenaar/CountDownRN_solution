@@ -22,10 +22,10 @@ const EventStack = () => {
                 options={{
                     headerRight: () => (
                         <Link
-                        onPress={() => navigation.navigate('EventForm', { 
-                            id: 0
-                        })}
-                        title="Info"
+                            onPress={() => navigation.navigate('EventForm', { 
+                                id: 0
+                            })}
+                            title="Info"
                         >
                           <Ionicons Ionicons name="add-outline"  size={32} />
                         </Link>

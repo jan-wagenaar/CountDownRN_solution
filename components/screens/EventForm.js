@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { parseISO } from 'date-fns';
 
-import useEvents from '../../hooks/useEvents';
+import { EventsContext } from '../../context/events-context'; 
 import DatePicker from '../DateTime/datepicker';
 import TimePicker from '../DateTime/timepicker';
 import Button from '../Button/button';
@@ -11,13 +11,15 @@ import getDateTimeString from '../../helpers/formatDateTimeString';
 import Card from '../Card/card';
 
 const EventForm = ({ route }) => {
+
+  const { createOrUpdateEvent, getEventById } = useContext(EventsContext);
   const [ event, setEvent ] = useState({
     id: 0,
     name: '',
     date: new Date(),
     time: new Date(),
   });
-  const { createOrUpdateEvent, getEventById } = useEvents();
+  
   const navigation = useNavigation();
 
   useEffect(() => {

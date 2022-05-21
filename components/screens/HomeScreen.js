@@ -1,22 +1,20 @@
 import React, {useState, useEffect, useContext } from 'react';
-import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-// import useEvents from '../../hooks/useEvents';
-import { EventsContext } from '../../context/EventsContext'; 
-import EventList from '../List/eventList';
+import { EventsContext } from '../../context/events-context'; 
+import List from '../List/list';
 
 const HomeScreen = () => {
-  const [ events, setEvents ] = useState();
   const { getEvents } = useContext(EventsContext);
+  const [ events, setEvents ] = useState();
 
   useEffect(() => {
     getEvents(setEvents);
-    // console.log(events)
   }, [])
 
   return (
     <View style={styles.container}>    
-      <EventList events={events} isLoaded={ events != undefined }/>
+      <List items={events} isLoaded={ events != undefined }/>
     </View>
   );
 }

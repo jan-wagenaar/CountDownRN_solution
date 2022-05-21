@@ -4,12 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { parseISO } from 'date-fns';
 
-import useEvents from '../../hooks/useEvents';
+import { EventsContext } from '../../context/events-context'; 
 import Card from '../Card/card';
 import Button from '../Button/button';
 import formatDistanceString from '../../helpers/formatDistance';
 
 const EventDetail = ({ route }) => {
+
+  const { getEventById, deleteEventById } = useContext(EventsContext);
   const [ event, setEvent ] = useState({
     id: 0,
     name: '',
@@ -17,7 +19,6 @@ const EventDetail = ({ route }) => {
     time: new Date(),
   });
 
-  const { getEventById, deleteEventById } = useEvents();
   const { showActionSheetWithOptions } = useActionSheet();
   const navigation = useNavigation();
 

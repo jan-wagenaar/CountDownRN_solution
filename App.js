@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 import useDatabase from './hooks/useDatabase';
-import {EventsContextProvider} from './context/EventsContext';
+import {EventsContextProvider} from './context/events-context';
 import EventStack from './components/screens/EventStack';
 
 const Tab = createBottomTabNavigator();
