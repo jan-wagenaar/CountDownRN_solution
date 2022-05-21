@@ -8,6 +8,8 @@ const HomeScreen = () => {
   const { getEvents } = useContext(EventsContext);
   const [ events, setEvents ] = useState();
 
+  console.log(events)
+
   useEffect(() => {
     getEvents(setEvents);
   }, [])

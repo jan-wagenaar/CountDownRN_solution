@@ -4,12 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import Link from '../Link/link';
+import formatDistanceString from '../../helpers/formatDistance';
 
 const ListItem = ({ item }) => {
     const navigation = useNavigation();
 
     return (
-
         <Link
             onPress={() => navigation.navigate('EventDetail', { 
                 id: item.id
@@ -28,12 +28,8 @@ const ListItem = ({ item }) => {
                 style={styles.right}
             >
                 <Text>
-                    In 2 days
+                    {formatDistanceString(item.datetime)}
                 </Text>
-                <Ionicons 
-                    name="arrow-forward" 
-                    size={24}
-                />
             </View>
         </View>
     </Link>

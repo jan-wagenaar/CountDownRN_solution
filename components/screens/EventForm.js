@@ -25,6 +25,7 @@ const EventForm = ({ route }) => {
   useEffect(() => {
     if(route.params.id !== 0) {
       getEventById(route.params.id, function(eventRec) { 
+        console.log(eventRec)
         setEvent({
           ...eventRec[0],
           date: parseISO(eventRec[0].datetime),
@@ -99,7 +100,8 @@ const EventForm = ({ route }) => {
         >
           <Button
             primary 
-            title="Insert event" onPress={insertEvent}
+            title="Insert event" 
+            onPress={insertEvent}
           />
         </View>
       </View>

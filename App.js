@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -9,6 +8,7 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import useDatabase from './hooks/useDatabase';
 import {EventsContextProvider} from './context/events-context';
 import EventStack from './components/screens/EventStack';
+import ErrorMessage from './components/Error/error';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,10 +50,9 @@ export default function App() {
     );
   } else {
     return (
-      <SafeAreaView>
-        <Text>😥</Text>
-        <Text>App cannot be loaded</Text>
-      </SafeAreaView>
+      <ErrorMessage 
+        errorMessage="App cannot be loaded"
+      />
     );
   }
 }

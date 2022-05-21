@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
@@ -15,6 +15,7 @@ const EventDetail = ({ route }) => {
   const [ event, setEvent ] = useState({
     id: 0,
     name: '',
+    datetime: new Date(),
     date: new Date(),
     time: new Date(),
   });
@@ -25,6 +26,7 @@ const EventDetail = ({ route }) => {
   useEffect(() => {
     if(route.params.id !== 0) {
       getEventById(route.params.id, function(eventRec) { 
+        console.log(eventRec)
         setEvent({
           ...eventRec[0],
           datetime: parseISO(eventRec[0].datetime),

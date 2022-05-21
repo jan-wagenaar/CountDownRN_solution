@@ -27,29 +27,31 @@ export const EventsContextProvider = props => {
     }
   };
 
-  const getEvents = (setEventsFunc) => {
-    return database.getEvents(setEventsFunc);
+  const getEvents = async (setEventsFunc) => {
+    const events = await database.getEvents(items => items);
+    const mappedEvents = mapEvents(events);
+
+    return setEventsFunc(mappedEvents);
   };
 
   const getEventById = (id, setEventFunc) => {
     return database.getEventById(id, setEventFunc);
   }
 
-  const deleteEventById = id => {
-    return database.deleteEventById(id, refreshEvents)
+  const deleteEventById = ( id ) => {
+    return database.deleteEventById(id)
   }
 
-  // const mapAndSetEvents = events => {
-  //   const mappedEvents = events.map(event => {
-  //     return {
-  //       ...event,
-  //       datetime: parseISO(event.datetime)
-  //     }
-  //   });
-  //   // console.log(mappedEvents)
-  //   setEvents(mappedEvents);
-  //   console.log(events)
-  // };
+  const mapEvents = events => {
+    const mappedEvents = events.map(event => {
+      return {
+        ...event,
+        datetime: parseISO(event.datetime)
+      }
+    });
+
+    return mappedEvents;
+  };
 
   // const refreshEvents = () =>  {
   //   return database.getEvents(mapAndSetEvents)

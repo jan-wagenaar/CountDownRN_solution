@@ -1,10 +1,12 @@
 import React from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const TimePicker = () => {
+const TimePicker = ({ time, onChange }) => {
     return (
         <DateTimePicker 
-            mode="timme" 
+            mode="time" 
+            value={ time }
+            onChange={ onChange }
         />
     )
 }
