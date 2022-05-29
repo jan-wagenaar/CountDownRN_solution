@@ -25,8 +25,7 @@ const EventDetail = ({ route }) => {
 
   useEffect(() => {
     if(route.params.id !== 0) {
-      getEventById(route.params.id, function(eventRec) { 
-        console.log(eventRec)
+      getEventById(route.params.id, (eventRec) => { 
         setEvent({
           ...eventRec[0],
           datetime: parseISO(eventRec[0].datetime),
@@ -55,6 +54,7 @@ const EventDetail = ({ route }) => {
   }
 
   const deleteEvent = () => {
+    console.log(event.id)
     deleteEventById(event.id);
     navigation.navigate('Events');
   }

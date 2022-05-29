@@ -24,10 +24,11 @@ const styles = StyleSheet.create({
       backgroundColor: '#edeff6',
     },
     smiley: {
-        fontSize: 32,
+        fontSize: 100,
+        marginBottom: 20,
     },
     errorText: {
-        fontSize: 24,
+        fontSize: 32,
     }
   });
 

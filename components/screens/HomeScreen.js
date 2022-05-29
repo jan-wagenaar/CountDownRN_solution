@@ -5,14 +5,14 @@ import { EventsContext } from '../../context/events-context';
 import List from '../List/list';
 
 const HomeScreen = () => {
-  const { getEvents } = useContext(EventsContext);
-  const [ events, setEvents ] = useState();
+  const { events } = useContext(EventsContext);
+  // const [ events, setEvents ] = useState();
 
   console.log(events)
 
-  useEffect(() => {
-    getEvents(setEvents);
-  }, [])
+//   useEffect(() => {
+//     getEvents(setEvents);
+// })
 
   return (
     <View style={styles.container}>    

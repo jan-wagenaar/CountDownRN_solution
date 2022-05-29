@@ -18,38 +18,47 @@ const getEvents = (setEventsFunc) => {
 };
 
 const getEventById = (id, setEventFunc) => {
-  db.transaction(
-    tx => {
-      tx.executeSql(
-        'SELECT * FROM EVENTS WHERE EVENTS.ID = (?)', [id],
-        [],
-        (_, { rows: { _array } }) => {
-          setEventFunc(_array)
-        }
-      );
-    },
-    (t, error) => { console.log("db error load event"); console.log(error) },
-    (_t, _success) => { console.log("loaded event")}
-  );
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      tx => {
+        tx.executeSql(
+          'SELECT * FROM events WHERE events.id = ?',
+          [id],
+          (_, { rows: { _array } }) => { resolve(setEventFunc(_array)) },
+          (_, error) => { console.log("error dropping events table"); reject(error) }
+        );
+      }
+    );
+  })
 }
 
-const insertEvent = (eventName, eventDateTime, successFunc) => {
+const insertEvent = (event, successFunc) => {
   db.transaction( tx => {
-      tx.executeSql( 'INSERT INTO events (name, datetime) values (? , ?)', [eventName, eventDateTime] );
+      tx.executeSql( 'INSERT INTO events (name, datetime) values (? , ?)', [event.name, event.datetime] );
     },
     (t, error) => { console.log("db error insertEvent"); console.log(error);},
     (t, success) => { successFunc() }
   )
 }
 
-const deleteEventById = (id) => {
+const updateEventById = (event, successFunc) => {
+  db.transaction( tx => {
+      tx.executeSql( 'UPDATE events SET name = ?,  datetime = ? WHERE ID = ?', [event.name, event.datetime, event.id] );
+    },
+    (t, error) => { console.log("db error insertEvent"); console.log(error);},
+    (t, success) => { successFunc() }
+  )
+}
+
+const deleteEventById = ( id, callBackFunc ) => {
   db.transaction(
     tx => {
       tx.executeSql(
-        'DELETE * FROM EVENTS WHERE EVENTS.ID = (?)', [id])
+        'DELETE FROM events WHERE events.ID = (?)', 
+        [id])
     },
-    (t, error) => { console.log("db error load event"); console.log(error) },
-    (_t, _success) => { console.log("loaded event")}
+    (t, error) => { console.log("db error deleting event"); console.log(error) },
+    (_t, _success) => { callBackFunc(); console.log("Deleted event")}
   );
 }
 
@@ -93,6 +102,7 @@ const setupEventsAsync = async () => {
 export const database = {
   getEvents,
   insertEvent,
+  updateEventById,
   getEventById,
   deleteEventById,
   setupDatabaseAsync,

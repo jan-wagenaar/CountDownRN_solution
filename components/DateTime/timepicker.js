@@ -6,7 +6,7 @@ const TimePicker = ({ time, onChange }) => {
         <DateTimePicker 
             mode="time" 
             value={ time }
-            onChange={ onChange }
+            onChange={(event, value) => onChange(value) }
         />
     )
 }

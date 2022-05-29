@@ -42,7 +42,7 @@ const EventForm = ({ route }) => {
       datetime: getDateTimeString(event.date, event.time)
     }
     createOrUpdateEvent(mappedEvent);
-    navigation.navigate("Events");
+    navigation.navigate("Events")
   }
 
   const updateEventName = name => {
@@ -53,6 +53,7 @@ const EventForm = ({ route }) => {
   };
 
   const updateEventDate = date => {
+    console.log(date)
     setEvent({
       ...event,
       date: date
