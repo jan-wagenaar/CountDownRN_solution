@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { EventsContext } from '../../context/events-context'; 
@@ -6,13 +6,6 @@ import List from '../List/list';
 
 const HomeScreen = () => {
   const { events } = useContext(EventsContext);
-  // const [ events, setEvents ] = useState();
-
-  console.log(events)
-
-//   useEffect(() => {
-//     getEvents(setEvents);
-// })
 
   return (
     <View style={styles.container}>    

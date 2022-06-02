@@ -6,7 +6,11 @@ const ErrorMessage = ({ errorMessage }) => {
         <SafeAreaView
             style={styles.container}
         >
-            <Text>😥</Text>
+            <Text
+                style={styles.smiley}
+            >
+                😥
+            </Text>
             <Text
                 style={styles.errorMessage}
             >
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
     },
     smiley: {
         fontSize: 100,
-        marginBottom: 20,
+        marginBottom: 20
     },
     errorText: {
         fontSize: 32,

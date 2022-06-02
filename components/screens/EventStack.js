@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,26 +12,39 @@ import Link from '../Link/link';
 
 const Stack = createStackNavigator();
 
-const EventStack = () => {
+const LinkNew = () => {
     const navigation = useNavigation();
 
+    return (
+        <View
+            style={styles.addLink}
+        >
+            <Link
+                onPress={() => navigation.navigate('EventForm', { 
+                    id: 0
+                })}
+                title="Info"
+                style={ styles.addLink }
+            >
+                <Ionicons 
+                    Ionicons 
+                    name="add-outline" 
+                    size={32}
+                />
+            </Link>
+        </View>
+    )
+}
+
+const EventStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen 
                 name="Events" 
                 component={HomeScreen} 
                 options={{
-                    headerRight: () => (
-                        <Link
-                            onPress={() => navigation.navigate('EventForm', { 
-                                id: 0
-                            })}
-                            title="Info"
-                        >
-                          <Ionicons Ionicons name="add-outline"  size={32} />
-                        </Link>
-                    ),
-                  }}
+                    headerRight: LinkNew
+                }}
             />
             <Stack.Screen 
                 name="EventDetail" 
@@ -53,5 +67,11 @@ const EventStack = () => {
         </Stack.Navigator>
     )
 };
+
+const styles = StyleSheet.create({
+    addLink: {
+      paddingRight: 10,
+    }
+  });
 
 export default EventStack;

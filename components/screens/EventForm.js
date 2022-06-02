@@ -25,7 +25,6 @@ const EventForm = ({ route }) => {
   useEffect(() => {
     if(route.params.id !== 0) {
       getEventById(route.params.id, function(eventRec) { 
-        console.log(eventRec)
         setEvent({
           ...eventRec[0],
           date: parseISO(eventRec[0].datetime),
@@ -53,7 +52,6 @@ const EventForm = ({ route }) => {
   };
 
   const updateEventDate = date => {
-    console.log(date)
     setEvent({
       ...event,
       date: date
@@ -71,7 +69,11 @@ const EventForm = ({ route }) => {
       <View style={styles.container}>
         <Card>
         <View style={styles.name}>
-          <Text>Name</Text>
+          <Text
+            style={styles.label}
+          >
+            Name
+          </Text>
           <TextInput
             style= { styles.input }
             onChangeText={(name) => updateEventName(name)}
@@ -80,7 +82,11 @@ const EventForm = ({ route }) => {
           />
         </View>
         <View style={styles.date}>
-          <Text>Date</Text>
+          <Text
+              style={styles.label}
+          >
+            Date
+          </Text>
           <View style={styles.datePicker}>
             <DatePicker 
               date={event.date}
@@ -89,7 +95,11 @@ const EventForm = ({ route }) => {
           </View>
         </View>
         <View style={styles.time}> 
-          <Text>Time</Text>
+          <Text
+            style={styles.label}
+          >
+            Time
+          </Text>
           <TimePicker 
             time={event.time}
             onChange={updateEventTime}
@@ -99,9 +109,14 @@ const EventForm = ({ route }) => {
         <View
           style={styles.buttonContainer}
         >
-          <Button
-            primary 
-            title="Insert event" 
+          <Button 
+            title="Cancel" 
+            onPress={() => navigation.navigate("Events")}
+          />
+          <Button 
+            title={
+              route.params.id === 0 ? "Insert" :  "Update" + " event"
+            } 
             onPress={insertEvent}
           />
         </View>
@@ -121,15 +136,19 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     padding: 25,
   },
+  label: {
+    alignSelf: 'flex-end',
+    marginBottom: 8
+  },
   input: {
-    marginTop: 8,
-    marginBottom: 16,
     padding: 8,
     height: 40,
     borderColor: '#ced4da',
     borderWidth: 1,
+    textAlign: 'right',
   },
   date: {
     alignContent: 'center',

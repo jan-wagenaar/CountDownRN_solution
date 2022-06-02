@@ -3,13 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Link from '../Link/link';
 
-const Button = ({ title, onPress }) => {
+const Button = ({ title, onPress, warning }) => {
     return (
       <Link 
         onPress={onPress}
       >
         <View
-         style={ styles.container }
+         style={
+          [ 
+            styles.container, 
+            warning ? styles.warning : styles.default 
+          ]
+        }
         >
           <Text
             style={ styles.text }
@@ -23,12 +28,15 @@ const Button = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#0b2d4d',
       padding: 16,
       margin: 5,
-      borderBottomWidth: 1,
-      borderBottomColor: '#dee2e6',
       borderRadius: 4,
+    },
+    default: {
+      backgroundColor: '#0b2d4d',
+    }, 
+    warning: {
+      backgroundColor: '#d50000',
     },
     text: {
       color: '#fff',

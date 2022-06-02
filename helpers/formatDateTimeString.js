@@ -4,13 +4,14 @@ const getDateTimeString = (date, time) => {
     const dateTimeObject = new Date(
         date.getFullYear(),
         date.getMonth(),
-        date.getDay(),
+        date.getDate(),
         time.getHours(),
         time.getMinutes(),
         time.getSeconds()
     );
+
     const formattedDate = formatISO(dateTimeObject);
-    console.log(formattedDate);
+    
     return formattedDate
 }
 

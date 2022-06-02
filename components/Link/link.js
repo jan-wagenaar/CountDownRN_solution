@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const Link = ({onPress, children}) => {
     return (

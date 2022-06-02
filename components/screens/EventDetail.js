@@ -54,7 +54,6 @@ const EventDetail = ({ route }) => {
   }
 
   const deleteEvent = () => {
-    console.log(event.id)
     deleteEventById(event.id);
     navigation.navigate('Events');
   }
@@ -69,12 +68,12 @@ const EventDetail = ({ route }) => {
           <Text 
             style={styles.header}
           >
-            {formatDistanceString(event.datetime)}
+            {event.name}
           </Text>
           <Text 
             style={styles.text}
           >
-            {event.name}
+            {formatDistanceString(event.datetime)}
           </Text>
         </Card>
         <View 
@@ -83,7 +82,7 @@ const EventDetail = ({ route }) => {
           <Button 
             title="Delete event"
             onPress={confirmDeleteEvent}
-            style={{marginRight: 10}}
+            warning
           />
           <Button 
             primary
@@ -108,6 +107,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#edeff6',
   },
   header: {
+    marginTop: 20,
+    marginBottom: 20,
     color: '#000',
     fontSize: 32,
     fontWeight: '600',
@@ -116,9 +117,11 @@ const styles = StyleSheet.create({
   text: {
     color: '#000',
     fontSize: 24,
+    marginBottom: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     padding: 25,
   }
 });
